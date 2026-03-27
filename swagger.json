@@ -5,39 +5,37 @@
     "description": "API for Authors and Genres",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "securityDefinitions": {
+    "github": {
+      "type": "oauth2",
+      "authorizationUrl": "https://github.com/login/oauth/authorize",
+      "flow": "implicit"
+    }
+  },
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
   "paths": {
     "/api-docs": {
       "get": {
-        "description": "",
+        "description": "Swagger UI",
         "responses": {
           "default": {
-            "description": ""
+            "description": "Success"
           }
         }
       }
     },
     "/authors/": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "description": "Get all authors",
+        "produces": ["application/json"],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "description": "",
+        "description": "Create new author",
+        "security": [{ "github": [] }],
         "parameters": [
           {
             "name": "body",
@@ -45,159 +43,89 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "birthDate": {
-                  "example": "any"
-                },
-                "nationality": {
-                  "example": "any"
-                },
-                "mostFamousWork": {
-                  "example": "any"
-                },
-                "awardsCount": {
-                  "example": "any"
-                },
-                "isActive": {
-                  "example": "any"
-                }
+                "firstName": { "example": "any" },
+                "lastName": { "example": "any" },
+                "birthDate": { "example": "any" },
+                "nationality": { "example": "any" },
+                "mostFamousWork": { "example": "any" },
+                "awardsCount": { "example": "any" },
+                "isActive": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/authors/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "description": "Get author by ID",
+        "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update author",
+        "security": [{ "github": [] }],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "birthDate": {
-                  "example": "any"
-                },
-                "nationality": {
-                  "example": "any"
-                },
-                "mostFamousWork": {
-                  "example": "any"
-                },
-                "awardsCount": {
-                  "example": "any"
-                },
-                "isActive": {
-                  "example": "any"
-                }
+                "firstName": { "example": "any" },
+                "lastName": { "example": "any" },
+                "birthDate": { "example": "any" },
+                "nationality": { "example": "any" },
+                "mostFamousWork": { "example": "any" },
+                "awardsCount": { "example": "any" },
+                "isActive": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete author",
+        "security": [{ "github": [] }],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/genres/": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "description": "Get all genres",
+        "produces": ["application/json"],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "description": "",
+        "description": "Create new genre",
+        "security": [{ "github": [] }],
         "parameters": [
           {
             "name": "body",
@@ -205,115 +133,66 @@
             "schema": {
               "type": "object",
               "properties": {
-                "genreName": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                }
+                "genreName": { "example": "any" },
+                "description": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Created" },
+          "412": { "description": "Precondition Failed" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/genres/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "description": "Get genre by ID",
+        "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update genre",
+        "security": [{ "github": [] }],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "genreName": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                }
+                "genreName": { "example": "any" },
+                "description": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "412": { "description": "Precondition Failed" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete genre",
+        "security": [{ "github": [] }],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     }
