@@ -56,6 +56,16 @@ app.get('/', (req, res) => {
   res.send(req.user !== undefined ? `Logged in as ${req.user.displayName}` : "Logged Out");
 });
 
+app.get('/login', passport.authenticate('github', (req, res) => {}));
+
+app.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    req.session.destroy(); 
+    res.redirect('/');
+  });
+});
+
 app.get('/github/callback', 
   passport.authenticate('github', { failureRedirect: '/api-docs', session: true}),
   (req, res) => {
